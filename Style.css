@@ -1,0 +1,38 @@
+/* General styling */
+html {
+  font-size: 10px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Heading styles */
+h1 {
+  font-size: 36px;
+  text-align: center;
+  color: #00539F;
+  text-shadow: 2px 2px 1px black;
+}
+
+/* Paragraph and list styles */
+p, li {
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+}
+
+/* Background and container styles */
+body {
+  width: 80%;
+  margin: 0 auto;
+  background-color: #F4F4F4;
+  padding: 20px;
+  border: 2px solid #00539F;
+  border-radius: 5px;
+}
+
+/* Image styles */
+img {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+  height: auto;
+}
