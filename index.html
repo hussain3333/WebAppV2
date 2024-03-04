@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="myBookList">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Book Categories</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
+  <link href="styles/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body ng-controller="bookCtrl">
+
+  <h1>Book Categories</h1>
+
+  <ul>
+    <li ng-repeat="category in bookCategories">
+      {{category.name}} <span ng-click="removeCategory($index)">&times;</span>
+      <ul>
+        <li ng-repeat="book in category.books">{{book}} <span ng-click="removeBook($parent.$index, $index)">&times;</span></li>
+      </ul>
+      <input ng-model="newBook" placeholder="Add new book" />
+      <button ng-click="addBook($index)">Add</button>
+    </li>
+  </ul>
+
+  <input ng-model="newCategory" placeholder="Add new category" />
+  <button ng-click="addCategory()">Add Category</button>
+
+  <p>{{errortext}}</p>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
