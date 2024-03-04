@@ -29,7 +29,48 @@
   <p>{{errortext}}</p>
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-  <script src="app.js"></script>
+  <script>
+    var app = angular.module("myBookList", []);
+    app.controller("bookCtrl", function ($scope) {
+      $scope.bookCategories = [
+        { name: "Researcher Books", books: ["Book 1", "Book 2", "Book 3"] },
+        { name: "Academic Books", books: ["Book A", "Book B", "Book C"] },
+        { name: "Social Books", books: ["Book X", "Book Y", "Book Z"] }
+      ];
+
+      $scope.addCategory = function () {
+        $scope.errortext = "";
+        if (!$scope.newCategory) { return; }
+        if ($scope.bookCategories.findIndex(category => category.name.toLowerCase() === $scope.newCategory.toLowerCase()) === -1) {
+          $scope.bookCategories.push({ name: $scope.newCategory, books: [] });
+          $scope.newCategory = "";
+        } else {
+          $scope.errortext = "The category already exists.";
+        }
+      };
+
+      $scope.removeCategory = function (index) {
+        $scope.errortext = "";
+        $scope.bookCategories.splice(index, 1);
+      };
+
+      $scope.addBook = function (categoryIndex) {
+        $scope.errortext = "";
+        if (!$scope.newBook) { return; }
+        if ($scope.bookCategories[categoryIndex].books.indexOf($scope.newBook) === -1) {
+          $scope.bookCategories[categoryIndex].books.push($scope.newBook);
+          $scope.newBook = "";
+        } else {
+          $scope.errortext = "The book already exists in this category.";
+        }
+      };
+
+      $scope.removeBook = function (categoryIndex, bookIndex) {
+        $scope.errortext = "";
+        $scope.bookCategories[categoryIndex].books.splice(bookIndex, 1);
+      };
+    });
+  </script>
 </body>
 
 </html>
